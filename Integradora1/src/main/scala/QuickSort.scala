@@ -1,65 +1,37 @@
-//Samuel Jimenez Lasso
-//Matius Montealegre
-//Jorge Garcia Leon
+* This class contains two versions of quick sort written in a pure functional style
+* (immutable lists, recursion and pattern matching). In both versions the pivot is
+  * the head of the list:
+  *
+*  - quickSort2: the classic version that uses a 2-way partition (<= x and > x).
+*  - quickSort3: the improved version that replaces the 2-way partition with a
+*    3-way partition (< x, = x and > x), so lists with many repeated values are
+  *    sorted much faster.
+*/
+final class QuickSort {
 
-import scala.annotation.tailrec
-
-class QuickSort {
-
-  def invert(lst: List[Int], result: List[Int]): List[Int] = lst match {
-    case Nil => result
-    case head :: tail => invert(tail, head :: result)
+  /**
+   * Moves the elements of a list, one by one, to the front of an accumulator.
+   * Because of that, the elements end up in reverse order on top of acc.
+   * Example: reverseOnto(List(1, 2, 3), List(9)) = List(3, 2, 1, 9).
+   *
+   * @param list the list whose elements are moved
+   * @param acc  the list that receives the elements
+   * @return the reverse of list followed by acc
+   */
+  @tailrec
+  def reverseOnto(list: List[Int], acc: List[Int]): List[Int] = list match {
+    case Nil => acc
+    case head :: tail => reverseOnto(tail, head :: acc)
   }
 
-  def menores(inputList: List[Int], p: Int): List[Int]  =
-    @tailrec
-    def aux(remaining: List[Int], result: List[Int]): List[Int] = remaining match {
-      case Nil => result
-      case head :: tail =>
-        if head < p then
-          aux(tail, head :: result)
-        else
-          aux(tail, result)
-    }
-    invert(aux(inputList, Nil),Nil)
-
-
-  def mayores(inputList: List[Int], p: Int): List[Int] =
-    @tailrec
-    def aux(remaining: List[Int], result: List[Int]): List[Int] = remaining match {
-      case Nil => result
-      case head :: tail =>
-        if head > p then
-          aux(tail, head :: result)
-        else
-          aux(tail, result)
-    }
-    invert(aux(inputList, Nil), Nil)
-
-  def appendTR(inputL1: List[Int], inputL2: List[Int]): List[Int] =
-    inputL1:::inputL2
-
-
-  def separar(inputList: List[Int], p: Int, menoresAcc: List[Int], igualesAcc: List[Int], mayoresAcc: List[Int]): (List[Int], List[Int], List[Int]) =
-    inputList match {
-      case Nil => (menoresAcc.reverse, igualesAcc.reverse, mayoresAcc.reverse)
-      case head :: tail =>
-        if (head < p)
-          separar(tail, p, head :: menoresAcc, igualesAcc, mayoresAcc)
-        else if (head == p)
-          separar(tail, p, menoresAcc, head :: igualesAcc, mayoresAcc)
-        else
-          separar(tail, p, menoresAcc, igualesAcc, head :: mayoresAcc)
-    }
-
-
-  def quickSort(inputList: List[Int]): List[Int] = inputList match {
-    case Nil => Nil
-    case head :: Nil => List(head)
-    case head :: tail =>
-      val (menoresList, igualesList, mayoresList) = separar(tail, head, Nil, List(head), Nil)
-      quickSort(menoresList) ::: igualesList ::: quickSort(mayoresList)
-  }
-
-
+  /**
+   * Concatenates two lists keeping the order of both of them.
+   * It reverses the first list and then moves it back on top of the second one.
+   *
+   * @param first  the list that goes at the beginning
+   * @param second the list that goes at the end
+   * @return a list with the elements of first followed by the elements of second
+   */
+  def append(first: List[Int], second: List[Int]): List[Int] =
+    reverseOnto(reverseOnto(first, Nil), second)
 }
