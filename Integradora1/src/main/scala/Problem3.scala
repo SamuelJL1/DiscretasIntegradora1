@@ -35,5 +35,43 @@ class Problem3 {
     }
   }
 
+  def auxEuristic(inputList: List[List[Int]]): Double = {
 
-}
+    @tailrec
+    def closestToPivot(pivotPoint: List[Int], remaining: List[List[Int]], best: Double): Double = {
+      remaining match {
+        case Nil => best
+        case head :: tail =>
+          pivotPoint match {
+            case x1 :: y1 :: Nil =>
+              head match {
+                case x2 :: y2 :: Nil =>
+                  val dist = Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
+                  val newBest = if (dist < best) dist else best
+                  closestToPivot(pivotPoint, tail, newBest)
+              }
+          }
+      }
+    }
+        @tailrec
+        def bruteForce(points: List[List[Int]], best: Double): Double = {
+          points match {
+            case Nil => best
+            case _ :: Nil => best
+            case head :: tail =>
+              val distFromHead = closestToPivot(head, tail, Double.MaxValue)
+              val newBest =  if (distFromHead < best) distFromHead else best
+              bruteForce(tail, newBest)
+          }
+        }
+
+    inputList match {
+      case Nil => Double.MaxValue
+      case _ =>
+        bruteForce(inputList,Double.MaxValue)
+    }
+  }
+  }
+
+
+
