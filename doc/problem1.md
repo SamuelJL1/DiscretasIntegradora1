@@ -1,36 +1,36 @@
-# 1.3 Complejidad y ecuación de recurrencia
+# 1.3 Complexity and Recurrence Equation
 
-## 1.3.1 Notación
+## 1.3.1 Notation
 
-- $n$: tamaño de la lista.
-- $T(n)$: costo de `aux(n, lst)`. Como `numberOfInversions` solo desempaqueta la tupla, $T_{\text{numberOfInversions}}(n) = T(n) + O(1)$.
-- Cada operación elemental (comparación, `::`, suma, pattern matching) cuesta una constante $c$.
+- $n$: size of the list.
+- $T(n)$: cost of `aux(n, lst)`. Since `numberOfInversions` only unpacks the tuple, $T_{\text{numberOfInversions}}(n) = T(n) + O(1)$.
+- Each elementary operation (comparison, `::`, addition, pattern matching) costs a constant $c$.
 
-## 1.3.2 Costo de los métodos auxiliares
+## 1.3.2 Cost of the Helper Methods
 
-| Método | Descripción | Costo |
+| Method | Description | Cost |
 |---|---|---|
-| `length` | Recorre toda la lista | $\Theta(m)$ para una lista de tamaño $m$ |
-| `split(lst, k)` | Una llamada recursiva por elemento, hasta $k$ pasos | $\Theta(k)$; con $k = n/2$ queda $\Theta(n)$ |
-| `merge` | Cada llamada consume un elemento de `left` o `right` | Ver abajo |
+| `length` | Traverses the entire list | $\Theta(m)$ for a list of size $m$ |
+| `split(lst, k)` | One recursive call per element, up to $k$ steps | $\Theta(k)$; with $k = n/2$ it becomes $\Theta(n)$ |
+| `merge` | Each call consumes one element from `left` or `right` | See below |
 
 **`split`:**
 
 $$S(k) = S(k-1) + c, \qquad S(0) = c \;\Rightarrow\; S(k) = \Theta(k)$$
 
-**`merge`:** sean $m = |left|$ y $r = |right|$. Hay a lo sumo $m + r + 1$ llamadas, es decir $\Theta(n)$. Sin embargo, la rama `h1 > h2` evalúa `left.length`, que es $\Theta(|left|)$, cada vez que se ejecuta:
+**`merge`:** let $m = |left|$ and $r = |right|$. There are at most $m + r + 1$ calls, that is, $\Theta(n)$. However, the `h1 > h2` branch evaluates `left.length`, which is $\Theta(|left|)$, every time it is executed:
 
-- **Mejor caso** (lista ordenada): siempre `h1 <= h2`, nunca se llama `length`.
+- **Best case** (sorted list): always `h1 <= h2`, so `length` is never called.
 
 $$M(n) = c\,n = \Theta(n)$$
 
-- **Peor caso** (lista en orden inverso): hay $n/2$ llamadas por la rama `h1 > h2`, cada una con un `length` de $n/2$.
+- **Worst case** (reverse-ordered list): there are $n/2$ calls through the `h1 > h2` branch, each with a `length` of $n/2$.
 
 $$M(n) = \frac{n}{2}\cdot\frac{n}{2} + n = \frac{n^2}{4} + n = \Theta(n^2)$$
 
-## 1.3.3 Ecuación de recurrencia de `aux`
+## 1.3.3 Recurrence Equation of `aux`
 
-Cada llamada con $n > 1$ ejecuta `split` $O(n)$, dos `length` $O(n)$, dos llamadas recursivas sobre mitades y un `merge`:
+Each call with $n > 1$ executes `split` in $O(n)$, two `length` calls in $O(n)$, two recursive calls on the halves, and one `merge`:
 
 $$
 T(n) =
@@ -39,27 +39,27 @@ T(n) =
 \end{cases}
 $$
 
-### Mejor caso: $M(n) = \Theta(n)$
+### Best case: $M(n) = \Theta(n)$
 
 $$T(n) = 2T\left(\frac{n}{2}\right) + n$$
 
-**Teorema maestro:** $a = 2$, $b = 2$, $f(n) = n$ y $n^{\log_2 2} = n$. Como $f(n) = \Theta\!\left(n^{\log_b a}\right)$, aplica el caso 2:
+**Master theorem:** $a = 2$, $b = 2$, $f(n) = n$ and $n^{\log_2 2} = n$. Since $f(n) = \Theta\!\left(n^{\log_b a}\right)$, case 2 applies:
 
 $$T(n) = \Theta(n \log n)$$
 
-**Árbol de recursión:** hay $\log_2 n$ niveles y cada nivel cuesta $n$ (el nivel $i$ tiene $2^i$ subproblemas de tamaño $n/2^i$), luego $T(n) = n\log_2 n$.
+**Recursion tree:** there are $\log_2 n$ levels and each level costs $n$ (level $i$ has $2^i$ subproblems of size $n/2^i$), hence $T(n) = n\log_2 n$.
 
-### Peor caso: $M(n) = \Theta(n^2)$
+### Worst case: $M(n) = \Theta(n^2)$
 
 $$T(n) = 2T\!\left(\frac{n}{2}\right) + \frac{n^2}{4} + n$$
 
-**Teorema maestro:** $a = 2$, $b = 2$, $f(n) = \Theta(n^2)$ y $n^{\log_2 2} = n$. Como $f(n) = \Omega\!\left(n^{1+\varepsilon}\right)$ con $\varepsilon = 1$, aplica el caso 3. Condición de regularidad:
+**Master theorem:** $a = 2$, $b = 2$, $f(n) = \Theta(n^2)$ and $n^{\log_2 2} = n$. Since $f(n) = \Omega\!\left(n^{1+\varepsilon}\right)$ with $\varepsilon = 1$, case 3 applies. Regularity condition:
 
-$$a\,f(n/b) = 2\left(\frac{n}{2}\right)^2 = \frac{n^2}{2} \le k\,n^2 \quad\text{con } k = \tfrac{1}{2} < 1 \;\checkmark$$
+$$a\,f(n/b) = 2\left(\frac{n}{2}\right)^2 = \frac{n^2}{2} \le k\,n^2 \quad\text{with } k = \tfrac{1}{2} < 1 \;\checkmark$$
 
 $$T(n) = \Theta(n^2)$$
 
-**Por expansión:**
+**By expansion:**
 
 $$
 T(n) = \sum_{i=0}^{\log_2 n} 2^i \cdot \frac{(n/2^i)^2}{4}
@@ -67,27 +67,27 @@ T(n) = \sum_{i=0}^{\log_2 n} 2^i \cdot \frac{(n/2^i)^2}{4}
 \le \frac{n^2}{4}\cdot 2 = \frac{n^2}{2}
 $$
 
-Es una serie geométrica, así que el nivel raíz domina y $T(n) = \Theta(n^2)$.
+This is a geometric series, so the root level dominates and $T(n) = \Theta(n^2)$.
 
-## 1.3.4 Resumen de complejidad temporal
+## 1.3.4 Time Complexity Summary
 
-| Caso | Recurrencia | Complejidad |
+| Case | Recurrence | Complexity |
 |---|---|---|
-| Mejor (lista ordenada) | $T(n) = 2T(n/2) + n$ | $\Theta(n \log n)$ |
-| Peor (lista inversa) | $T(n) = 2T(n/2) + n^2/4 + n$ | $\Theta(n^2)$ |
+| Best (sorted list) | $T(n) = 2T(n/2) + n$ | $\Theta(n \log n)$ |
+| Worst (reversed list) | $T(n) = 2T(n/2) + n^2/4 + n$ | $\Theta(n^2)$ |
 
-## 1.3.5 Complejidad espacial
+## 1.3.5 Space Complexity
 
-- `aux` tiene profundidad de recursión $\log_2 n$.
-- `split` y `merge` **no son recursivas de cola**: la pila puede crecer hasta $O(n)$.
-- Las listas intermedias ocupan $O(n)$ por nivel y se liberan al subir.
+- `aux` has a recursion depth of $\log_2 n$.
+- `split` and `merge` are **not tail-recursive**: the stack can grow up to $O(n)$.
+- Intermediate lists take up $O(n)$ per level and are released as the recursion unwinds.
 
-$$\text{Espacio} = \Theta(n)$$
+$$\text{Space} = \Theta(n)$$
 
-## 1.3.6 Observación y versión optimizada
+## 1.3.6 Observation and Optimized Version
 
-El cálculo de `left.length` dentro de `merge` impide garantizar $O(n \log n)$. Si se pasa la longitud de `left` como parámetro y se decrementa al consumir un elemento de la izquierda (`counter + lenLeft`), entonces $M(n) = \Theta(n)$ en todos los casos y:
+Computing `left.length` inside `merge` prevents guaranteeing $O(n \log n)$. If the length of `left` is passed as a parameter and decremented each time an element from the left is consumed (`counter + lenLeft`), then $M(n) = \Theta(n)$ in all cases and:
 
 $$T(n) = 2T\left(\frac{n}{2}\right) + n \;\Rightarrow\; T(n) = \Theta(n \log n)$$
 
-para el mejor, el peor y el caso promedio.
+for the best, worst, and average cases.
