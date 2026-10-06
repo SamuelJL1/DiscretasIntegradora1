@@ -7,7 +7,6 @@ import scala.annotation.tailrec
  */
 final class QuickSort3 {
 
-  /** Classic quick sort, used here for its auxiliary list functions (append). */
   private val base = new QuickSort
 
   /**
