@@ -1,8 +1,5 @@
 import munit.FunSuite
 
-/**
- * Unit tests for the classic quick sort with a 2-way partition (problem 2).
- */
 class QuickSortSuite extends FunSuite {
 
   val qs = new QuickSort

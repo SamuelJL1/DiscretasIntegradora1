@@ -41,27 +41,45 @@ Las particiones devuelven cada parte al revés del orden de entrada porque los a
 
 ## 2. Prueba de correctitud (inducción estructural)
 
-`ms(xs)` es el multiconjunto de los elementos de `xs` y `++` es la concatenación.
+Las listas de Scala están definidas recursivamente:
 
-### Lema — `partition3`
+- **Paso base:** `Nil` es una lista.
+- **Paso recursivo:** si `t` es una lista y `h` es un entero, entonces `h :: t` es una lista.
+  Por eso las demostraciones se hacen por inducción estructural sobre las listas: primero se prueba la propiedad para `Nil` y luego se prueba que, si vale para `t`, también vale para `h :: t`.
 
-**P(xs):** para cualesquiera `L, E, G`, si `partition3(xs, p, L, E, G) = (L', E', G')`, entonces `L'` tiene los elementos de `L` más los de `xs` que son `< p`, `E'` los de `E` más los `= p`, y `G'` los de `G` más los `> p`.
+### Demostración 1: `partition3` clasifica bien los elementos
 
-- **Caso base (`xs = Nil`):** devuelve `(L, E, G)`. Como `Nil` no tiene elementos, no se agrega nada. Se cumple.
-- **Hipótesis inductiva:** `P(t)` se cumple para cualesquiera `L, E, G`.
-- **Paso inductivo (`xs = h :: t`):** si `h < p`, la función devuelve `partition3(t, p, h :: L, E, G)`. Por la hipótesis, `L'` tiene los elementos de `h :: L` más los de `t` menores que `p`, que son justo los de `L` más los de `h :: t` menores que `p`. `E'` y `G'` no cambian porque `h` no es `= p` ni `> p`. Los casos `h = p` y `h > p` son iguales, pero con `E` y `G`. ✔
-### Teorema — `quickSort3` ordena
+Sea `P(xs)` la propiedad que afirma que, para cualquier pivote `p` y cualesquiera acumuladores `L`, `E`, `G`, si `partition3(xs, p, L, E, G) = (L', E', G')`, entonces:
 
-**Q(xs):** `quickSort3(xs)` está ordenada de forma creciente y `ms(quickSort3(xs)) = ms(xs)`.
+- `L'` tiene los elementos de `L` más los elementos de `xs` que son menores que `p`,
+- `E'` tiene los elementos de `E` más los elementos de `xs` que son iguales a `p`,
+- `G'` tiene los elementos de `G` más los elementos de `xs` que son mayores que `p`.
 
-Usamos inducción estructural fuerte: suponemos que `Q` vale para toda lista con menos elementos que `xs`.
+  **Paso base:** se debe demostrar que `P(Nil)` es verdadera. Por la definición de `partition3`, `partition3(Nil, p, L, E, G) = (L, E, G)`. Como `Nil` no tiene elementos, no hay nada que agregar a `L`, `E` ni `G`, así que `L' = L`, `E' = E` y `G' = G`. Por lo tanto, `P(Nil)` es verdadera.
 
-- **Casos base:** `quickSort3(Nil) = Nil` y `quickSort3([x]) = [x]`. Las dos están ordenadas y tienen los mismos elementos. ✔
-- **Hipótesis inductiva:** `Q(ys)` se cumple para toda lista `ys` con menos elementos que `xs`.
-- **Paso inductivo (`xs = p :: t`, con `t` no vacía):**
-    1. Por el lema, `partition3(t, p, Nil, List(p), Nil)` da `less` (los elementos de `t` menores que `p`), `equal` (`p` y sus copias) y `greater` (los mayores que `p`).
-    2. `less` y `greater` salen de `t`, así que tienen menos elementos que `xs`. Por la hipótesis, `quickSort3(less)` y `quickSort3(greater)` están ordenadas y tienen los mismos elementos que `less` y `greater`.
-    3. El resultado es `quickSort3(less) ++ equal ++ quickSort3(greater)` (`append` concatena). Está ordenado porque todo lo de la izquierda es `< p`, la mitad es solo `p` y todo lo de la derecha es `> p`. Además, `ms(less) ∪ ms(equal) ∪ ms(greater) = ms(xs)`. ✔
+**Paso recursivo:** se supone que `P(t)` es verdadera para cualesquiera `L`, `E`, `G` (hipótesis inductiva). Se debe demostrar que esto implica que `P(h :: t)` es verdadera para todo entero `h`. Por la definición de `partition3` hay tres casos:
+
+- Si `h < p`: `partition3(h :: t, p, L, E, G) = partition3(t, p, h :: L, E, G)`. Por la hipótesis inductiva (con el acumulador `h :: L`), `L'` tiene los elementos de `h :: L` más los menores que `p` de `t`. Eso es lo mismo que los elementos de `L` más los menores que `p` de `h :: t`, porque `h` es menor que `p`. `E'` y `G'` quedan igual que en la hipótesis, lo cual es correcto porque `h` no es igual ni mayor que `p`.
+- Si `h = p`: `partition3(h :: t, p, L, E, G) = partition3(t, p, L, h :: E, G)`. Por la hipótesis inductiva, `E'` tiene los elementos de `E`, más `h`, más los iguales a `p` de `t`, que son justo los iguales a `p` de `h :: t`. `L'` y `G'` no cambian.
+- Si `h > p`: `partition3(h :: t, p, L, E, G) = partition3(t, p, L, E, h :: G)`. Es igual al caso anterior, pero `h` entra en `G'`.
+  En los tres casos `P(h :: t)` es verdadera, lo cual concluye la demostración. Además, como los tres casos no se cruzan, cada elemento queda en una sola parte y no se pierde ninguno.
+
+### Demostración 2: `quickSort3` ordena la lista
+
+Sea `Q(xs)` la propiedad que afirma que `quickSort3(xs)` es una lista ordenada de forma creciente y que tiene exactamente los mismos elementos que `xs` (con las mismas repeticiones).
+
+**Paso base:** se debe demostrar que `Q(Nil)` es verdadera. Por la definición, `quickSort3(Nil) = Nil`, que está ordenada y tiene los mismos elementos que `Nil`. Por lo tanto, `Q(Nil)` es verdadera. Igual pasa con una lista de un solo elemento: `quickSort3(x :: Nil) = x :: Nil`, que también está ordenada.
+
+**Paso recursivo:** sea `xs = p :: t`, con `t` no vacía. Como `quickSort3` no se llama sobre `t` sino sobre las partes `less` y `greater`, que salen de `t`, se supone que `Q` es verdadera para todas las listas con menos elementos que `p :: t` (hipótesis inductiva). Se debe demostrar que `Q(p :: t)` es verdadera.
+
+Por la definición, `quickSort3(p :: t)` hace `partition3(t, p, Nil, List(p), Nil) = (less, equal, greater)` y devuelve `quickSort3(less) ++ equal ++ quickSort3(greater)`.
+
+1. Por la Demostración 1 (con `L = Nil`, `E = List(p)`, `G = Nil`): `less` tiene los elementos de `t` menores que `p`, `equal` tiene a `p` y los elementos de `t` iguales a `p`, y `greater` tiene los elementos de `t` mayores que `p`.
+2. `less` y `greater` solo tienen elementos de `t`, así que tienen menos elementos que `p :: t`. Por la hipótesis inductiva, `quickSort3(less)` está ordenada y tiene los mismos elementos que `less`, y lo mismo pasa con `quickSort3(greater)` y `greater`.
+3. El resultado está ordenado: todo lo de `quickSort3(less)` es menor que `p`, todo lo de `equal` es igual a `p` y todo lo de `quickSort3(greater)` es mayor que `p`, y cada parte ya está ordenada.
+4. El resultado tiene los mismos elementos que `p :: t`: entre `less`, `equal` y `greater` están todos los elementos de `t` más `p`, sin perder ni repetir ninguno (Demostración 1).
+   Por lo tanto `Q(p :: t)` es verdadera, lo cual concluye la demostración.
+
 ## 3. Complejidad
 
 `partition3` recorre la lista una vez: `P(n) = P(n-1) + c = Θ(n)`. `append` también es lineal, así que cada llamada de `quickSort3` hace `Θ(n)` de trabajo sin contar la recursión. Si la partición deja `L` elementos en `less` y `G` en `greater`:
