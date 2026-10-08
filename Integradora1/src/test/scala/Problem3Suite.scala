@@ -1,6 +1,6 @@
 import munit.FunSuite
 
-class Problem3Test extends FunSuite {
+class Problem3Suite extends FunSuite {
 
   val p3 = new Problem3
 
