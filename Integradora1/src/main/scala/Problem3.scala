@@ -92,10 +92,10 @@ class Problem3 {
         case head :: tail =>
           (pivotPoint, head) match {
             case (x1 :: y1 :: Nil, x2 :: y2 :: Nil) =>
-              if ((y2 - y1).toDouble >= best) best
+              if ((y2 - y1) >= best) best
               else {
-                val dx = (x1 - x2).toDouble
-                val dy = (y1 - y2).toDouble
+                val dx = (x1 - x2)
+                val dy = (y1 - y2)
                 val dist = Math.sqrt(dx * dx + dy * dy)
                 closestToPivot(pivotPoint, tail, if (dist < best) dist else best)
               }
