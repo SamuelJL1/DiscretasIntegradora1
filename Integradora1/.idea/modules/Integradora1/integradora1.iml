@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="integradora1 [file:///C:/Users/Samuel%20Jimenez%20Lasso/OneDrive/Documentos/Uni/Discretas2/DiscretasIntegradora1/Integradora1/]" external.linked.project.path="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="DisplayModuleName">
+    <option name="name" value="integradora1" />
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_21" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../..">
+      <excludeFolder url="file://$MODULE_DIR$/../../../target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="integradora1.main" />
+    <orderEntry type="module" module-name="integradora1.test" production-on-test="" />
+  </component>
+</module>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e2f329d6-73c7-461a-bcbd-863d96007923" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Scala Worksheet" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SamuelJL1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SamuelJL1/DiscretasIntegradora1.git&quot;,
+    &quot;accountId&quot;: &quot;e87fb7ae-4465-4225-abeb-6cd7e3f7c05e&quot;
+  }
+}</component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3KEqllj6xpnvjvi7SXGW30ceZvq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "MUnit.InversionsSuite.executor": "Run",
+    "MUnit.MUnit in 'scala'.executor": "Run",
+    "MUnit.Problem1Suite.[2,3,9,2,3] has 2 inversions.executor": "Run",
+    "MUnit.Problem1Suite.[9,7,5,3] has 6 inversions.executor": "Run",
+    "MUnit.Problem1Suite.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "problem2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Samuel Jimenez Lasso/OneDrive/Documentos/Uni/Discretas2/DiscretasIntegradora1/Integradora1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="MUnit.MUnit in 'scala'">
+    <configuration name="InversionsSuite" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="integradora1.test" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envFilePaths">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <option name="testClassPath" value="InversionsSuite" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MUnit in 'scala'" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="integradora1.test" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envFilePaths">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="All in package" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <option name="classBuf">
+        <list>
+          <option value="Problem1Suite" />
+          <option value="Problem3SizeSuite" />
+          <option value="Problem3Suite" />
+          <option value="QuickSort3Suite" />
+          <option value="QuickSortSuite" />
+        </list>
+      </option>
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Problem1Suite" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="integradora1.test" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envFilePaths">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <option name="testClassPath" value="Problem1Suite" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Problem1Suite.[2,3,9,2,3] has 2 inversions" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="integradora1.test" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envFilePaths">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <option name="testClassPath" value="Problem1Suite" />
+      <option name="testName" value="[2,3,9,2,3] has 2 inversions" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Problem1Suite.[9,7,5,3] has 6 inversions" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="integradora1.test" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envFilePaths">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <option name="testClassPath" value="Problem1Suite" />
+      <option name="testName" value="[9,7,5,3] has 6 inversions" />
+      <option name="workingDirectory" value="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="MUnit.MUnit in 'scala'" />
+        <item itemvalue="MUnit.Problem1Suite" />
+        <item itemvalue="MUnit.Problem1Suite.[9,7,5,3] has 6 inversions" />
+        <item itemvalue="MUnit.Problem1Suite.[2,3,9,2,3] has 2 inversions" />
+        <item itemvalue="MUnit.InversionsSuite" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ScalaProjectSettings">
+    <option name="migrateConfigurationsNotificationShown" value="true" />
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e2f329d6-73c7-461a-bcbd-863d96007923" name="Changes" comment="" />
+      <created>1791133228359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1791133228359</updated>
+      <workItem from="1791133232388" duration="1118000" />
+      <workItem from="1791164701120" duration="517000" />
+      <workItem from="1791289969251" duration="4458000" />
+      <workItem from="1791295459161" duration="2413000" />
+      <workItem from="1791393520896" duration="594000" />
+      <workItem from="1791659602854" duration="1924000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

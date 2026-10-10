@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="integradora1:test [file:///C:/Users/Samuel%20Jimenez%20Lasso/OneDrive/Documentos/Uni/Discretas2/DiscretasIntegradora1/Integradora1/]" external.linked.project.path="C:\Users\Samuel Jimenez Lasso\OneDrive\Documentos\Uni\Discretas2\DiscretasIntegradora1\Integradora1" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="SBT" external.system.module.type="sbtSourceSet" type="JAVA_MODULE" version="4">
+  <component name="DisplayModuleName">
+    <option name="name" value="integradora1.test" />
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_21">
+    <output-test url="file://$MODULE_DIR$/../../../target/scala-2.12/test-classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../../src/test/scala" isTestSource="true" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../target/scala-2.12/resource_managed/test" />
+    <content url="file://$MODULE_DIR$/../../../target/scala-2.12/src_managed/test" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="sbt: scala-sdk-2.12.20" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="integradora1.main" />
+</module>
