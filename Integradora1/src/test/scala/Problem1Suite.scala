@@ -1,7 +1,58 @@
 import munit.FunSuite
+import scala.concurrent.duration.*
 
 class Problem1Suite extends FunSuite:
   val problem = new Problem1()
+  override val munitTimeout = 2.minutes
+
+  def randomList(n: Int, seed: Int): List[Int] =
+    val r = new scala.util.Random(seed)
+    List.fill(n)(r.nextInt(2001) - 1000)
+
+  def bruteForce(l: List[Int]): Int =
+    val a = l.toArray
+    var count = 0
+    var i = 0
+    while i < a.length do
+      var j = i + 1
+      while j < a.length do
+        if a(i) > a(j) then count += 1
+          j += 1
+      i += 1
+    count
+
+  def swappedPairs(n: Int): List[Int] =
+    List.tabulate(n)(i => if i % 2 == 0 then i + 1 else i - 1)
+
+  test("toy (n=50): random list matches brute force") {
+    val l = randomList(50, seed = 1)
+    assertEquals(problem.numberOfInversions(l.length, l), bruteForce(l))
+  }
+
+  test("small (n=5000): random list matches brute force") {
+    val l = randomList(5000, seed = 2)
+    assertEquals(problem.numberOfInversions(l.length, l), bruteForce(l))
+  }
+
+  test("medium (n=50000): sorted list has 0 inversions") {
+    val l = List.range(0, 50000)
+    assertEquals(problem.numberOfInversions(l.length, l), 0)
+  }
+
+  test("medium (n=50000): swapped pairs has n/2 inversions") {
+    val n = 50000
+    assertEquals(problem.numberOfInversions(n, swappedPairs(n)), n / 2)
+  }
+
+  test("large (n=1000000): sorted list has 0 inversions") {
+    val n = 1000000
+    assertEquals(problem.numberOfInversions(n, List.range(0, n)), 0)
+  }
+
+  test("large (n=1000000): swapped pairs has n/2 inversions") {
+    val n = 1000000
+    assertEquals(problem.numberOfInversions(n, swappedPairs(n)), n / 2)
+  }
 
   test("empty list has 0 inversions") {
     assertEquals(problem.numberOfInversions(0, Nil), 0)

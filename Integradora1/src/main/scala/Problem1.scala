@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 class Problem1 {
   /**
    * Counts the number of inversions in a list. An inversion is a pair of positions
@@ -40,15 +41,13 @@ class Problem1 {
    * @return a pair (left, right) where left holds the first n elements and right the rest
    */
   def split(lst: List[Int], n: Int): (List[Int], List[Int]) =
-    if n == 0 then
-      (Nil, lst)
-    else
-      lst match {
-        case Nil => (Nil, Nil)
-        case head :: tail =>
-          val (left, right) = split(tail, n - 1)
-          (head :: left, right)
-      }
+    @tailrec
+    def loop(rest: List[Int], k: Int, acc: List[Int]): (List[Int], List[Int]) =
+      if k == 0 then (acc.reverse, rest)
+      else rest match
+        case Nil => (acc.reverse, Nil)
+        case head :: tail => loop(tail, k - 1, head :: acc)
+    loop(lst, n, Nil)
 
   /**
    * Merges two sorted lists into a single sorted list while counting the inversions between them.
@@ -62,15 +61,13 @@ class Problem1 {
    * @return a pair with the merged sorted list and the updated inversion counter
    */
   def merge(left: List[Int], right: List[Int], counter: Int): (List[Int], Int) =
-    (left, right) match {
-      case (Nil, n) => (right, counter)
-      case (p, Nil) => (left, counter)
-      case (h1 :: t1, h2 :: t2) =>
-        if h1 <= h2 then
-          val (list, count) = merge(t1, right, counter)
-          (h1 :: list, count)
-        else
-          val (list, count) = merge(left, t2, counter + left.length)
-          (h2 :: list, count)
-    }
+    @tailrec
+    def loop(l: List[Int], r: List[Int], lenL: Int, count: Int, acc: List[Int]): (List[Int], Int) =
+      (l, r) match
+        case (Nil, _) => (acc.reverse ::: r, count)
+        case (_, Nil) => (acc.reverse ::: l, count)
+        case (h1 :: t1, h2 :: t2) =>
+          if h1 <= h2 then loop(t1, r, lenL - 1, count, h1 :: acc)
+          else loop(l, t2, lenL, count + lenL, h2 :: acc)
+    loop(left, right, left.length, counter, Nil)
 }
