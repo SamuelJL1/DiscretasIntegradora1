@@ -4,32 +4,29 @@ class QuickSortSuite extends FunSuite {
 
   val qs = new QuickSort
 
-  test("menores devuelve elementos menores al pivote") {
-    assertEquals(qs.menores(List(5, 2, 8, 1, 3), 4), List(2, 1, 3))
+  test("append keeps the order of both lists") {
+    assertEquals(qs.append(List(1, 2, 3), List(4, 5)), List(1, 2, 3, 4, 5))
+    assertEquals(qs.append(Nil, List(4, 5)), List(4, 5))
+    assertEquals(qs.append(List(1, 2), Nil), List(1, 2))
   }
 
-  test("mayores devuelve elementos mayores al pivote") {
-    assertEquals(qs.mayores(List(5, 2, 8, 1, 3), 4), List(5, 8))
+  test("partition2 splits in <= pivot and > pivot") {
+    val (lessOrEqual, greater) = qs.partition2(List(2, 8, 1, 5), 5, Nil, Nil)
+    assertEquals(lessOrEqual, List(5, 1, 2))
+    assertEquals(greater, List(8))
   }
 
-  test("appendTR concatena dos listas") {
-    assertEquals(qs.appendTR(List(1, 2, 3), List(4, 5)), List(1, 2, 3, 4, 5))
+  test("quickSort2 sorts a list with repeated values") {
+    assertEquals(qs.quickSort2(List(4, 4, 1, 9, 4, 1, 4, 4)), List(1, 1, 4, 4, 4, 4, 4, 9))
   }
 
-
-  test("quickSort ordena lista desordenada") {
-    assertEquals(qs.quickSort(List(5, 2, 8, 1, 3)), List(1, 2, 3, 5, 8))
+  test("quickSort2 with an empty list and with one element") {
+    assertEquals(qs.quickSort2(Nil), Nil)
+    assertEquals(qs.quickSort2(List(3)), List(3))
   }
 
-  test("quickSort con lista vacía") {
-    assertEquals(qs.quickSort(Nil), Nil)
-  }
-
-  test("quickSort con lista ya ordenada") {
-    assertEquals(qs.quickSort(List(1, 2, 3, 4)), List(1, 2, 3, 4))
-  }
-
-  test("quickSort con elementos repetidos") {
-    assertEquals(qs.quickSort(List(4, 4, 2, 2, 1)), List(1, 2,2, 4,4))
+  test("quickSort2 with a list in reverse order") {
+    assertEquals(qs.quickSort2(List(5, 4, 3, 2, 1)), List(1, 2, 3, 4, 5))
   }
 }
+

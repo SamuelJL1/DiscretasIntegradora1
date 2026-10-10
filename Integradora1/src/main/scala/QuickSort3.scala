@@ -1,24 +1,51 @@
-class QuickSort3 {
-  
-  def separar3(inputList: List[Int], p: Int, menoresAcc: List[Int], igualesAcc: List[Int], mayoresAcc: List[Int]): (List[Int], List[Int], List[Int]) = inputList match {
-    case Nil =>
-      (menoresAcc.reverse, igualesAcc.reverse, mayoresAcc.reverse)
-    case head :: tail =>
-      if (head < p)
-        separar3(tail, p, head :: menoresAcc, igualesAcc, mayoresAcc)
-      else if (head == p)
-        separar3(tail, p, menoresAcc, head :: igualesAcc, mayoresAcc)
-      else
-        separar3(tail, p, menoresAcc, igualesAcc, head :: mayoresAcc)
-  }
+import scala.annotation.tailrec
 
-  def quickSort3(inputList: List[Int]): List[Int] = inputList match {
+ /* This class contains the improved quick sort, which replaces the 2-way partition of
+ * QuickSort with a 3-way partition (< x, = x and > x), so lists with many repeated
+ * values are sorted much faster. It is written in a pure functional style (immutable
+ * lists, recursion and pattern matching) and the pivot is the head of the list.
+ */
+final class QuickSort3 {
+
+  private val base = new QuickSort
+
+  /**
+   * 3-way partition: splits a list in three parts, the elements less than the
+   * pivot, the elements equal to the pivot and the elements greater than the pivot.
+   * The order inside each part is not kept (it does not matter for sorting).
+   *
+   * @param list    the elements to classify
+   * @param pivot   the value used to compare
+   * @param less    accumulator with the elements < pivot (start with Nil)
+   * @param equal   accumulator with the elements = pivot
+   * @param greater accumulator with the elements > pivot (start with Nil)
+   * @return the triple (elements < pivot, elements = pivot, elements > pivot)
+   */
+  @tailrec
+  def partition3(list: List[Int], pivot: Int, less: List[Int], equal: List[Int], greater: List[Int]): (List[Int], List[Int], List[Int]) =
+    list match {
+      case Nil => (less, equal, greater)
+      case head :: tail =>
+        if head < pivot then partition3(tail, pivot, head :: less, equal, greater)
+        else if head == pivot then partition3(tail, pivot, less, head :: equal, greater)
+        else partition3(tail, pivot, less, equal, head :: greater)
+    }
+
+  /**
+   * Quick sort with a 3-way partition. This is the main solution of problem 2.
+   * The head of the list is the pivot. The tail is split in (< pivot), (= pivot)
+   * and (> pivot), where the equal part starts with the pivot itself. Only the
+   * first and the last part are sorted again; the middle part is already sorted
+   * because all its elements are equal.
+   *
+   * @param list the list to sort
+   * @return the list sorted in increasing order
+   */
+  def quickSort3(list: List[Int]): List[Int] = list match {
     case Nil => Nil
-    case head :: Nil => List(head)
-    case head :: tail =>
-      val (menoresList, igualesList, mayoresList) = separar3(tail, head, Nil, List(head), Nil)
-      quickSort3(menoresList) ::: igualesList ::: quickSort3(mayoresList)
+    case _ :: Nil => list
+    case pivot :: tail =>
+      val (less, equal, greater) = partition3(tail, pivot, Nil, List(pivot), Nil)
+      base.append(quickSort3(less), base.append(equal, quickSort3(greater)))
   }
-
-
 }
