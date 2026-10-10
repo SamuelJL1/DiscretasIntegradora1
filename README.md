@@ -1,6 +1,9 @@
 # DiscretasIntegradora1
-## Samuel Jiménez Lasso - A00415296
 
-## Jorge Humberto Garcia Leon - A00414861
+## Equipo Alfa Buena Maravilla Onda Dinamita Escuadrón Lobo
 
-## Matius Montealegre Padilla - A00415087
+### Samuel Jiménez Lasso - A00415296
+
+### Jorge Humberto Garcia Leon - A00414861
+
+### Matius Montealegre Padilla - A00415087
